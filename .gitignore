@@ -1,0 +1,39 @@
+# Gradle
+
+.gradle/
+build/
+
+# Kotlin
+
+.kotlin/
+
+# IntelliJ
+
+.idea/
+*.iml
+out/
+
+# Qodana
+
+.qodana/
+
+# OS files
+
+.DS_Store
+Thumbs.db
+
+# Logs
+
+*.log
+
+# Local environment
+
+local.properties
+
+# Generated IntelliJ sandbox
+
+run/
+
+
+.intellijPlatform/
+.qodana

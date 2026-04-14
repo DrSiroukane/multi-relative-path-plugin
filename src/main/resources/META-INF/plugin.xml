@@ -1,0 +1,58 @@
+<idea-plugin>
+
+    <id>com.drsiroukane.plugins.multirelativepath</id>
+    <name>Multi Relative Path</name>
+    <vendor email="dr.siroukane@gmail.com">DrSiroukane</vendor>
+
+    <idea-version since-build="241"/>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+
+        <notificationGroup
+                id="MultiRelativePath"
+                displayType="BALLOON"
+                isLogByDefault="true"/>
+
+        <projectConfigurable
+                instance="com.drsiroukane.plugins.multirelativepath.settings.MultiRelativePathConfigurable"
+                displayName="Multi Relative Path"/>
+
+        <projectViewNodeDecorator
+                implementation="com.drsiroukane.plugins.multirelativepath.ui.RelativeParentDecorator"/>
+
+    </extensions>
+
+    <actions>
+
+        <group id="MultiRelativePath.Group"
+               text="Multi Relative Path"
+               popup="false">
+
+            <separator/>
+
+            <action
+                    id="SetRelativeParentAction"
+                    class="com.drsiroukane.plugins.multirelativepath.actions.SetRelativeParentAction"
+                    text="Set As Relative Parent"
+                    description="Mark this folder as a relative parent"
+                    icon="/icons/setRelativeParent.svg"/>
+
+            <action
+                    id="CopyMultiRelativePathAction"
+                    class="com.drsiroukane.plugins.multirelativepath.actions.CopyMultiRelativePathAction"
+                    text="Copy Multi Relative Path"
+                    description="Copy path relative to configured parents"
+                    icon="/icons/copyMultiRelative.svg"/>
+
+            <add-to-group
+                    group-id="ProjectViewPopupMenu"
+                    anchor="after"
+                    relative-to-action="CutCopyPasteGroup"/>
+
+        </group>
+
+    </actions>
+
+</idea-plugin>
