@@ -1,6 +1,7 @@
 package com.drsiroukane.plugins.multirelativepath.settings
 
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.project.guessProjectDir
 import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.openapi.vfs.LocalFileSystem
 import com.intellij.openapi.vfs.VirtualFile
@@ -81,16 +82,13 @@ class IncludeFoldersDialog(private val project: Project) : DialogWrapper(project
 
     /** Get project root safely */
     private fun getProjectRoot(): VirtualFile? {
+        project.guessProjectDir()?.let { return it }
+
         project.basePath?.let { path ->
             return LocalFileSystem.getInstance().findFileByPath(path)
         }
 
-        return try {
-            @Suppress("DEPRECATION")
-            project.baseDir
-        } catch (e: Exception) {
-            null
-        }
+        return null
     }
 
     /** Build tree with folders only */
